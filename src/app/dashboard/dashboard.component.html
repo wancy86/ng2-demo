@@ -1,9 +1,29 @@
-<h3>Top Heroes</h3>
-<div class="grid grid-pad">
-  <a *ngFor="let hero of heroes" class="col-1-4"
-      routerLink="/detail/{{hero.id}}">
-    <div class="module hero">
-      <h4>{{hero.name}}</h4>
+<div class="row">
+  <h3>Top Heroes</h3>
+</div>
+<div class="row">
+  <div class="col-sm-12 border" *ngFor="let hero of heroes; index as i;">
+    <a routerLink="/detail/{{hero.id}}">
+      <div class="module hero">
+        <h4>{{hero.name}}</h4>
+      </div>
+    </a>
+  </div>
+</div>
+<div class="row">
+  <h3>Top Heroes 2</h3>
+</div>
+<div class="row">
+  <!-- 类似ng-repeat-start end -->
+  <!-- 说实话, 这个设计很傻逼啊 -->
+  <ng-template ngFor let-hero [ngForOf]="heroes" let-i="index">
+    <div class="col-sm-2 border">{{i+1}}</div>
+    <div class="col-sm-10 border">
+      <a routerLink="/detail/{{hero.id}}">
+        <div class="module hero">
+          <h4>{{hero.name}}</h4>
+        </div>
+      </a>
     </div>
-  </a>
+  </ng-template>
 </div>
